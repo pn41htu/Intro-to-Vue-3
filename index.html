@@ -6,14 +6,54 @@
     <!-- Import Styles -->
     <link rel="stylesheet" href="./assets/styles.css" />
     <!-- Import Vue.js -->
+<<<<<<< Updated upstream
     <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+=======
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+>>>>>>> Stashed changes
   </head>
   <body>
     <div id="app">
-      <h1>Product goes here</h1>
-    </div>
+      <h1>{{ product }}</h1>
+      <!-- will reactively receive any updates to product -->
+      <p>{{ description }}</p>
+      <div class="product-image">
+        <!--<img v-bind:src="image" />--><!-- src attribute bound to the image data -->
+        <!-- shorthand for v-bind -->
+        <a :href="url"><img :src="image" /></a>
+        L'url : <a :href="url">{{url}}</a>
+        <!--<p v-show="inStock">In Stock 🐸</p>
+        <p v-show="!inStock">Out of Stock 📛</p> -->
 
+        <!--<p v-if="inStock">In Stock 🐸</p>
+        <p v-else>Out of Stock 📛</p> -->
+
+        <p v-if="inventory > 10">In Stock 🐸</p>
+        <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out! 🦧</p>
+        <p v-else>Out of Stock 📛</p>
+        <p v-show="onSale">On Sale! 🎉</p>
+      </div>
+      <div>
+        Details :
+        <ul>
+          <li v-for="detail in details">{{ detail }}</li>
+        </ul>
+      </div>
+
+      Variants :
+      <div v-for="variant in variants" :key="variant.id">
+        {{ variant.color }},
+      </div>
+      Sizes :
+      <ul>
+        <li v-for="size in sizes">{{ size }}</li>
+      </ul>
+    </div>
     <!-- Import Js -->
     <script src="./main.js"></script>
+    <!-- Import App -->
+    <script>
+      const mountedApp = app.mount("#app");
+    </script>
   </body>
 </html>
